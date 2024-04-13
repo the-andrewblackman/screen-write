@@ -1,0 +1,167 @@
+h1{
+    text-align: left;
+    margin: .5em 0 .5em .5em;
+    width: 8.75em;
+    letter-spacing: .05em;
+    padding: 0 0 0 0.5em;
+    font-size: 2em;
+    font-family: din-round,sans-serif;
+    border: solid 3px black;
+}
+
+.filter-button, .shortcut {
+    background-color: transparent; /* Sets the button background to transparent */
+    border: none; /* Removes any border that might be set */
+    color: #3c4043; /* Sets the text color */
+    padding: 8px 16px;
+    border-radius: 4px; /* Keeps rounded corners if desired */
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Ensures contents are vertically centered */
+    transition: box-shadow 0.3s, background-color 0.3s; /* Transitions for effects */
+}
+.filter-button {
+    color: #3c4043; /* Google's font color */
+    padding: 8px 16px;
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Center text and SVG vertically */
+    border: 2px solid black;
+}
+.filter-button .dropdown-arrow {
+    margin-left: 0px; /* Space between text and arrow */
+}
+
+.filter-button .dropdown-arrow svg {
+    fill: #5f6368; /* Match the arrow color with the text */
+    width: 20px;
+    height: 20px;
+}
+.dropdown {
+    position: relative;
+    display: flex;   /* Flex layout makes the contents (button) line up in a row */
+    align-items: left; /* Vertically center aligns the items in the container */
+}
+.dropdown-arrow {
+    margin-left: 5px;
+    height: 30px; /* Increased from 20px to 30px */
+    line-height: 30px; /* Align line height with the new height */
+    width: 30px; /* Increased from 20px to 30px */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.dropdown-arrow svg {
+    fill: #5f6368; /* Inherits the color from the parent element */
+    width: 100%; /* Fills the entire width of the parent */
+    height: 100%; /* Fills the entire height of the parent */
+    pointer-events: none; /* Prevents the SVG from capturing clicks */
+}
+.shortcut{
+  align-items: center;
+  appearance: button;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: din-round,sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 10px;
+  margin: 0 0 0 2em;
+  outline: none;
+  overflow: visible;
+  padding: 0px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 11em;
+}
+
+.shortcut:after {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.shortcut:main,
+.shortcut:focus {
+  user-select: auto;
+}
+
+.shortcut:disabled {
+  cursor: auto;
+}
+
+.shortcut:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+.shortcuts-list {
+    position: absolute; /* Absolutely position the shortcuts list */
+    top: 100%; /* Position it right below the button */
+    left: 0;
+    z-index: 1000; /* Ensure it appears on top of other content */
+    width: 274px;
+    background-color: transparent;
+    border: 3px solid black;
+    border-radius: 0;
+    padding: 1em;
+    margin: 0 0 0 1em;
+    
+}
+.shortcuts-list ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Removes default padding, particularly on the left side */
+    margin: 0; /* Removes default margin to align list properly within its container */
+}
+.shortcuts-list li {
+    padding: 5px 0; /* Optional: Adds vertical padding for each list item */
+}
+.editor-and-shortcuts {
+    display: flex;
+    align-items: flex-start;
+}
+
+.htmlContainer {
+    position: relative; /* Make the parent container relative */
+}
+/* Ensure the editor container doesn't move */
+.editContainer {
+    position: relative;
+    z-index: 1;
+    font-size: 20px;
+    width: 1300px;
+    padding: 0 4em 0 4em;
+    margin: auto;
+    padding: 0 4em;
+}
+
+
+  
+  
+
+  
+  

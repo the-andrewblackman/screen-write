@@ -1,0 +1,22 @@
+<div class="htmlContainer">
+  <h1>Screen Writer</h1>
+  <div class="dropdown">
+    <button class="shortcut filter-button" (click)="toggleShortcutsList()">
+      Shortcuts <span class="dropdown-arrow">
+  <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"></path>
+  </svg>
+</span>
+    </button>
+    <div *ngIf="isShortcutsListVisible" class="shortcuts-list">
+      <ul>
+        <li><kbd>CMD + S</kbd> or <kbd>CTRL + S</kbd> - save </li>
+        <li><kbd>CMD + Z</kbd> or <kbd>CTRL + Z</kbd> - undo </li>
+        <!-- Add other shortcuts as needed -->
+      </ul>
+    </div>
+  </div>
+  
+  <section class="editContainer" #editorContainer></section>
+  
+</div>

@@ -1,0 +1,9 @@
+# Ignore everything inside node_modules folder
+/node_modules
+
+# Except for node_modules/@codemirror folder
+!node_modules/@codemirror/
+
+dist/
+.cache/
+tmp/
