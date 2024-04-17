@@ -42,9 +42,27 @@ h1{
     width: 20px;
     height: 20px;
 }
+.filter-button, .shortcut {
+    background-color: transparent;
+    border: 2px solid black;
+    color: #3c4043;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+.filter-button .dropdown-arrow,
+.shortcut .dropdown-arrow {
+    margin-left: 5px;
+}
+  
 .dropdown {
     position: relative;
-    display: flex;   /* Flex layout makes the contents (button) line up in a row */
+    display: inline-block;   /* Flex layout makes the contents (button) line up in a row */
     align-items: left; /* Vertically center aligns the items in the container */
 }
 .dropdown-arrow {
@@ -62,6 +80,15 @@ h1{
     height: 100%; /* Fills the entire height of the parent */
     pointer-events: none; /* Prevents the SVG from capturing clicks */
 }
+.dropdown-container {
+    display: flex; /* Aligns children (dropdowns) in a row */
+    justify-content: start; /* Aligns children at the start of the container */
+    margin: 0 0 0 1em;
+}
+.dropdown:hover .shortcuts-list,
+.dropdown:hover .vim-list {
+    display: block; /* Show dropdown content on hover */
+}
 .shortcut{
   align-items: center;
   appearance: button;
@@ -77,7 +104,6 @@ h1{
   font-weight: 700;
   letter-spacing: .8px;
   line-height: 10px;
-  margin: 0 0 0 2em;
   outline: none;
   overflow: visible;
   padding: 0px 16px;
@@ -119,19 +145,18 @@ h1{
   border-width: 4px 0 0;
   background: none;
 }
-.shortcuts-list {
-    position: absolute; /* Absolutely position the shortcuts list */
-    top: 100%; /* Position it right below the button */
-    left: 0;
-    z-index: 1000; /* Ensure it appears on top of other content */
-    width: 274px;
-    background-color: transparent;
-    border: 3px solid black;
-    border-radius: 0;
-    padding: 1em;
-    margin: 0 0 0 1em;
-    
-}
+// .shortcuts-list {
+//     position: absolute; /* Absolutely position the shortcuts list */
+//     top: 100%; /* Position it right below the button */
+//     left: 0;
+//     z-index: 1000; /* Ensure it appears on top of other content */
+//     width: 274px;
+//     background-color: transparent;
+//     border: 3px solid black;
+//     border-radius: 0;
+//     padding: 1em;
+//     margin: 0 0 0 1em;
+// }
 .shortcuts-list ul {
     list-style-type: none; /* Removes bullet points */
     padding: 0; /* Removes default padding, particularly on the left side */
@@ -139,6 +164,25 @@ h1{
 }
 .shortcuts-list li {
     padding: 5px 0; /* Optional: Adds vertical padding for each list item */
+}
+// .vim-list {
+//     position: absolute;
+//     top: 100%; /* Position it right below the button */
+//     left: 0;
+//     z-index: 1000; /* Ensure it appears on top of other content */
+//     width: 274px;
+//     background-color: #fff; /* Change this as needed */
+//     border: 3px solid black;
+//     border-radius: 0;
+//     padding: 1em;
+//     margin: 0 0 0 1em; 
+//     display: flex; /* Use flexbox */
+//     flex-direction: column; /* Stack children vertically */
+// }
+
+.vim-list label {
+    margin-bottom: 10px; /* Add some space between the labels */
+    display: block; /* Ensure labels are block level */
 }
 .editor-and-shortcuts {
     display: flex;
@@ -157,7 +201,22 @@ h1{
     padding: 0 4em 0 4em;
     margin: auto;
     padding: 0 4em;
-}
+} 
+.shortcuts-list, .vim-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: 260px;
+    background-color: #fff;
+    border: 3px solid black;
+    border-radius: 0;
+    padding: .5em 0 .5em .5em;
+    display: none; /* Start with hidden dropdown content */
+  }
+  
+ 
+  
 
 
   

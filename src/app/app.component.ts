@@ -25,18 +25,40 @@ export class AppComponent implements AfterViewInit {
 	private editorView: EditorView; // Declare the EditorView instance here
 
 	isShortcutsListVisible = false;
+	isVimListVisible = false;
+	keyMappingUpEnabled: boolean = false;
+	keyMappingDownEnabled: boolean = false;
 
 	toggleShortcutsList(): void {
 		this.isShortcutsListVisible = !this.isShortcutsListVisible;
+	}
+	toggleVimList(): void {
+		this.isVimListVisible = !this.isVimListVisible;
 	}
 
 	ngAfterViewInit(): void {
 		this.editorView = this.setupEditor(); // Store the EditorView instance
 
 		Vim.map("jj", "<Esc>", "insert"); // in insert mode
-		Vim.map("k", "BILL", "insert");
 		this.editorView.focus();
 	}
+	toggleKeyUpMapping() {
+		if (this.keyMappingUpEnabled) {
+			Vim.map("k", "gk");
+		} else {
+			Vim.unmap("k");
+		}
+		this.editorView.update([]);
+	}
+	toggleKeyDownMapping() {
+		if (this.keyMappingDownEnabled) {
+			Vim.map("j", "gj");
+		} else {
+			Vim.unmap("j");
+		}
+		this.editorView.update([]);
+	}
+
 	setupEditor() {
 		const myTheme = EditorView.theme({
 			"&": {
@@ -52,6 +74,7 @@ export class AppComponent implements AfterViewInit {
 				outline: "none", // Remove the outline on focus if desired
 			},
 		});
+
 		const state = EditorState.create({
 			doc: this.text,
 			extensions: [
@@ -60,7 +83,6 @@ export class AppComponent implements AfterViewInit {
 				vim(),
 				minimalSetup,
 				syntaxHighlighting(fountainHighlight),
-				//EditorView.lineWrapping,
 				myTheme,
 				keymap.of([
 					...defaultKeymap,
@@ -72,7 +94,6 @@ export class AppComponent implements AfterViewInit {
 						},
 					},
 				]),
-
 				// keymap.of([{ key: "Tab", run: indentWithTab }]),
 				//keymap.of([indentWithTab]),
 			],
@@ -105,158 +126,113 @@ export class AppComponent implements AfterViewInit {
 			console.error("Editor is not initialized.");
 		}
 	}
-	text = `EXT. BRICK'S PATIO - DAY
+	text = `FADE IN:
 
-A gorgeous day.  The sun is shining.  But BRICK BRADDOCK, retired police detective, is sitting quietly, contemplating -- something.
+EXT. A CITY STREET - DAY
+
+Camera tracks down a snow-covered New York City street. We hold on a typical Brownstone. As we push in on an upstairs bedroom window, we hear the sounds of a video game in progress.
+
+A sick coughing sound is heard.
+
+INT. BROWNSTONE - BEDROOM
 	
-= These are some editor's notes
+This kid lying in bed, coughing. Pale, one sick cookie. Maybe he's seven or eight or nine. He holds a remote in one hand, presses it, and the video game moves a little bit. Then he's hit by another spasm of coughing, sets the remote down.
+
+His room is monochromatic, greys and blues, mildly high-tech. 
+
+The Kid's MOTHER enters, goes to him, fluffs his pillows, kisses him, and briefly feels his forehead. She's worried, it doesn't show. 
+
+MOTHER
+You feeling any better?
+
+THE KID
+A little bit.
+
+MOTHER
+Guess what.
+
+THE KID
+What?
+
+MOTHER
+Your grandfather's here.
+
+THE KID
+(not overjoyed)
+Mom, can't you tell him that I'm sick?
+
+MOTHER
+You are sick, that's why he's here.
+
+THE KID
+He'll pinch my cheek. I hate that.
+
+MOTHER
+Maybe he won't.
+
+The Kid shoots her an "I'm sure" look, as the Kid's GRANDFATHER bursts into the room. Kind of rumpled. But the eyes are bright. He has a wrapped package tucked under one arm as he immediately goes to The Kid, pinches his cheek.
+
+GRANDFATHER
+Hey! How's the sickie? Heh?
+
+The Kid gives his Mother an "I told you so" look. The Mother ignores it, beats a retreat.
+
+MOTHER
+I think I'll leave you two pals.
+
+And she is gone. There's an uncomfortable silence, then...
+
+GRANDFATHER
+I brought you a special present.
+
+THE KID
+What is it?
+
+GRANDFATHER
+Open it up.
+
+The Kid does. He does his best to smile.
+
+THE KID
+A book?
+
+GRANDFATHER
+That's right. When I was your age, television was called books. And this is a special book. It was the book my father used to read to me when I was sick, and I used to read it to your father. And today, I'm gonna read it to you.
+
+THE KID
+Has it got any sports in it?
+
+The Grandfather suddenly passionate.
+
+GRANDFATHER
+Are you kidding? Fencing. Fighting. Torture. Revenge. Giants. Monsters. Chases. Escapes. True love. Miracles.  
 	
-The SCREEN DOOR slides open and DICK STEEL, his former partner and fellow retiree, emerges with two cold beers.
+The Grandfather sits in a chair by the bed.
 	
-STEEL
-Beer's ready!
-	
-= some more!
-	
-BRICK
-Are they cold?
-	
-STEEL
-Does a bear crap in the woods?
-	
-Steel sits.  They laugh at the dumb joke.
+THE KID
+(manages a shrug)
+It doesn't sound too bad. I'll try and stay awake.
 
-STEEL
-(beer raised)
-To retirement.
+GRANDFATHER
+Oh. Well, thank you very much.  It's very nice of you. Your vote of confidence is overwhelming.  All right.  
+(he begins to read.) 
+The Princess Bride, by S.  Morgenstern. Chapter One.  Buttercup was raised on a small farm in the country of Florin.
 
-BRICK
-To retirement.
+DISSOLVE TO:
 
-They drink long and well from the beers.
+EXT. COUNTRYSIDE - DAY
+As he reads, the monochromatic look of the bedroom is replaced by the dazzling color of the English countryside.
 
-And then there's a long beat.
-Longer than is funny.
-Long enough to be depressing.
+GRANDFATHER (O.S.)
+Her favorite pastimes were riding her horse and tormenting the farm boy that worked there. His name was Westley, but she never called him that.
+(to the kid)
+Isn't that a wonderful beginning?
 
-The men look at each other.
+THE KID (O.S.)
+(doing his best)
+Yeah. It's really good.
 
-STEEL
-Screw retirement.
-
-BRICK ^
-Screw retirement.
-
-SMASH CUT TO:
-
-INT. TRAILER HOME - DAY
-
-This is the home of THE BOY BAND, AKA DAN and JACK.  They too are drinking beer, and counting the take from their last smash-and-grab.  Money, drugs, and ridiculous props are strewn about the table.
-
-	JACK
-	(in Vietnamese, subtitled)
-*Did you know Brick and Steel are retired?*
-
-	DAN
-Then let's retire them.
-_Permanently_.
-
-Jack begins to argue vociferously in Vietnamese (?), But mercifully we...
-
-		CUT TO:
-
-EXT. BRICK'S POOL - DAY
-
-Steel, in the middle of a heated phone call:
-
-STEEL
-They're coming out of the woodwork!
-(pause)
-No, everybody we've put away!
-(pause)
-Point Blank Sniper?
-
-.SNIPER SCOPE POV
-
-From what seems like only INCHES AWAY.  _Steel's face FILLS the *Leupold Mark 4* scope_.
-
-STEEL
-The man's a myth!
-
-Steel turns and looks straight into the cross-hairs.
-
-STEEL
-(oh crap)
-Hello...
-
-CUT TO:
-
-.OPENING TITLES
-
-> BRICK BRADDOCK <
-> & DICK STEEL IN <
-
-> BRICK & STEEL <
-> FULL RETIRED <
-
-===
-
-SMASH CUT TO:
-
-EXT. WOODEN SHACK - DAY
-
-COGNITO, the criminal mastermind, is SLAMMED against the wall.
-
-COGNITO
-Woah woah woah, Brick and Steel!
-
-Sure enough, it's Brick and Steel, roughing up their favorite usual suspect.
-
-COGNITO
-What is it you want with me, DICK?
-
-Steel SMACKS him.
-
-STEEL
-Who's coming after us?
-
-COGNITO
-Everyone's coming after you mate!  Scorpio, The Boy Band, Sparrow, Point Blank Sniper...
-
-As he rattles off the long list, Brick and Steel share a look.  This is going to be BAD.
-
-CUT TO:
-
-INT. GARAGE - DAY
-
-BRICK and STEEL get into Mom's PORSCHE, Steel at the wheel.  They pause for a beat, the gravity of the situation catching up with them.
-
-BRICK
-This is everybody we've ever put away.
-
-STEEL
-(starting the engine)
-So much for retirement!
-
-They speed off.  To destiny!
-
-CUT TO:
-
-EXT. PALATIAL MANSION - DAY
-
-An EXTREMELY HANDSOME MAN drinks a beer.  Shirtless, unfortunately.
-
-His minion approaches offscreen:
-
-MINION
-We found Brick and Steel!
-
-HANDSOME MAN
-I want them dead.  DEAD!
-
-Beer flies.
-
-> BURN TO PINK.
-
-> THE END <`;
+GRANDFATHER (O.S.)
+(off-screen reading)
+Nothing gave Buttercup as much pleasure as ordering Westley around.`;
 }

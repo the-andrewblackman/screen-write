@@ -6,9 +6,9 @@ import { indentUnit } from "@codemirror/language";
 
 const tokenTypes = {
 	"scene-heading":
-		/^((?:\*{0,3}_?)?(?:(?:int|ext|est|i\/e)[. ]).+)|^(?:\.(?!\.+))(.+)/i,
+		/^((?:\*{0,3}_?)?(?:(?:int|ext|fade|est|i\/e)[. ]).+)|^(?:\.(?!\.+))(.+)/i,
 
-	character: /^\s*[A-Z][A-Z0-9 \t]+$/,
+	character: /^\s*[A-Z][A-Z0-9 \t]*(?:\(O\.S\.\)|\(V\.O\.\))?\s*$/,
 	dialogue: /^\s*(\^?)?(?:\n(?!\n+))([\s\S]+)/,
 	parenthetical: /^(\(.+\))$/,
 
@@ -105,8 +105,8 @@ export const fountainHighlight = HighlightStyle.define([
 		display: "block",
 		textAlign: "left",
 		fontFamily: "Courier",
-		marginLeft: "16em",
-		marginRight: "13em",
+		marginLeft: "14em",
+		marginRight: "10em",
 	},
 ]);
 
