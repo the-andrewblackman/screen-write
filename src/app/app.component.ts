@@ -135,7 +135,7 @@ Camera tracks down a snow-covered New York City street. We hold on a typical Bro
 A sick coughing sound is heard.
 
 INT. BROWNSTONE - BEDROOM
-	
+
 This kid lying in bed, coughing. Pale, one sick cookie. Maybe he's seven or eight or nine. He holds a remote in one hand, presses it, and the video game moves a little bit. Then he's hit by another spasm of coughing, sets the remote down.
 
 His room is monochromatic, greys and blues, mildly high-tech. 
